@@ -1,8 +1,8 @@
 #!/bin/bash -eu
 
-export PYTHONPATH=..
+# export PYTHONPATH=..
 
-python="/usr/bin/time -v python"
+# python="/usr/bin/time -v python"
 
 # regularized least squares
 $python linear.py tensorflow dense_matrix

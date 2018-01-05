@@ -1,0 +1,8 @@
+/Library/Python/2.7/site-packages/cvxflow-0.1.2-py2.7.egg
+/usr/local/bin/saved_model_cli
+/usr/local/bin/tensorboard
+/usr/local/bin/wheel
+/usr/local/bin/tensorboard
+/usr/local/bin/easy_install
+/usr/local/bin/easy_install-3.6
+/usr/local/bin/pbr

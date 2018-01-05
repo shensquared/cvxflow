@@ -38,7 +38,7 @@ class ScaledTensorProblem(object):
         self.c = self.rho * orig.c * self.e
 
     def A(self, x):
-        return tf.mul(self.d, self.orig.A(tf.mul(self.e, x)))
+        return tf.multiply(self.d, self.orig.A(tf.multiply(self.e, x)))
 
     def AT(self, y):
         return self.e*self.orig.AT(self.d*y)

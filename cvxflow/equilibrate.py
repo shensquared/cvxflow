@@ -18,13 +18,13 @@ def balance(A, AT, shape, iters=50, name=None, seed=None):
                 s = random_probe((n, 1))
                 d += tf.square(A(s))
             tmp = tf.sqrt(d/iters)
-            d = alpha*tf.inv(project(tmp, 1e-3, 1e3))
+            d = alpha*tf.reciprocal(project(tmp, 1e-3, 1e3))
             e = tf.zeros((n, 1))
             for i in range(iters):
                 w = random_probe((m, 1))
                 e += tf.square(AT(d * w))
             tmp = tf.sqrt(e/iters)
-            e = beta*tf.inv(project(tmp, 1e-3, 1e3))
+            e = beta*tf.reciprocal(project(tmp, 1e-3, 1e3))
             return d, e
 
 def equilibrate(A, AT, shape, iters=50, gamma=1e-1, M=math.log(1e3),

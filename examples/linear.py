@@ -5,6 +5,7 @@ import numpy as np
 import scipy.sparse as sp
 import time
 import sys
+import cvxflow
 
 def op_dense_matrix(n):
     x = cvx.Variable(n)
