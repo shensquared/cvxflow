@@ -84,15 +84,16 @@ def run_scs(prob):
 def run_tensorflow(prob):
     from cvxflow.problem import TensorProblem
     from cvxflow import scs_tf
+    logs_path='../logs/convex'
 
     t0 = time.time()
     t_prob = TensorProblem(prob)
     print "problem_time:", time.time() - t0
 
-    # t0 = time.time()
-    # objective = scs_tf.solve(t_prob, equil_iters=0, max_iters=2500, gpu=True)
-    # print "gpu_solve_time: %.2f secs" % (time.time() - t0)
-    # print "objective: %.2e" % objective
+    t0 = time.time()
+    objective = scs_tf.solve(t_prob, equil_iters=0, max_iters=2500, gpu=True)
+    print "gpu_solve_time: %.2f secs" % (time.time() - t0)
+    print "objective: %.2e" % objective
 
     t0 = time.time()
     objective = scs_tf.solve(t_prob, equil_iters=50, max_iters=2500, gpu=False)

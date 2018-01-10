@@ -56,6 +56,8 @@ def run_tensorflow(Ax_expr, x_var):
     from cvxflow.conjugate_gradient import conjugate_gradient_solve
     from cvxflow import cvxpy_expr
 
+    logs_path='../logs/linear'
+
     b0 = Ax_expr.value
     b0 += sigma*np.random.randn(*b0.shape)
     obj = cvx.sum_squares(Ax_expr - b0) + lam*cvx.sum_squares(x_var)
@@ -80,17 +82,21 @@ def run_tensorflow(Ax_expr, x_var):
     with tf.Session(config=tf.ConfigProto(device_count={"GPU": 0})) as sess:
         sess.run(init)
         x0, iters0, r_norm_sq0 = sess.run([x, iters, r_norm_sq])
+        
         print "cpu_solve_time: %.2f secs" % (time.time() - t0)
 
     t0 = time.time()
     with tf.Session() as sess:
         sess.run(init)
+        # create log writer object
         x0, iters0, r_norm_sq0 = sess.run([x, iters, r_norm_sq])
         print "gpu_solve_time: %.2f secs" % (time.time() - t0)
 
     x_var.value = x0
     print "objective: %.3e" % obj.value
     print "cg_iterations:", iters0
+    writer = tf.summary.FileWriter(logs_path, graph=tf.get_default_graph())
+
 
 
 if __name__ == "__main__":
